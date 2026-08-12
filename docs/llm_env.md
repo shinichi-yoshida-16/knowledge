@@ -9,7 +9,7 @@
   - WSL2(Ubuntu)、Ollama(推論エンジン)、Open WebUI(Python venv)
 - 対象モデル
   - gpt-oss:20b
-  - vram内に完全オフロード氏、高速に動作
+  - vram内に完全オフロード、高速に動作
 
 ## 3. 手順
 ### 3.1 事前準備(Windows & WSLLS2)
@@ -61,7 +61,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ````
 
 #### 3.2.2 コード生成最適化モデルの取得
-- コーディングおよびIT技術調査に適していると思われるモデルをダウンロードする
+- gpt-ossをダウンロードする
 
 ````
 ollama pull gpt-oss:20b
@@ -159,7 +159,6 @@ SYSTEM """
 """
 ````
 
-
 #### 3.5.2 カスタムモデルの作成・登録
 ````
 ollama create gpt-oss-custom -f ./Modelfile_gpt_oss
@@ -167,9 +166,15 @@ ollama create gpt-oss-custom -f ./Modelfile_gpt_oss
 
 - 作成・登録後、Open WebUI(又はCLI)から gpt-oss-custom を指定することで最適化設定が適用される
 
+#### 3.5.3 カスタムモデルの更新
+- Modelfileを更新後、以下のコマンドを実行することで更新を反映する
+
+````
+ollama create gpt-oss-custom -f ./Modelfile_gpt_oss
+````
+
 ## 4. 運用と接続確認
 1. Open WebUIを開く
   - > http://localhost:8080
 2. モデル選択ドロップダウンから、gpt-oss-customを選択する
 3. チャット欄からコード生成やIT調査の指示を入力し、応答が日本語で正しく生成されることを確認する
-
