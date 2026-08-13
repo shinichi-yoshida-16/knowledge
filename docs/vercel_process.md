@@ -41,6 +41,9 @@
   - Vercelダッシュボードから対象のGitHubリポジトリをインポートすると、以後`main`ブランチへのpushで自動デプロイされる
 
 ##### 2.2.2.1 Vercelのインストール
+- 対象のGitHubリポジトリをローカルにclone(未取得の場合)
+  - > git clone <リポジトリURL>
+  - > cd <プロジェクトフォルダ>
 - プロジェクトフォルダにて、以下のbashコマンドを実行する
   - > npm install -g vercel
 - vercelの導入確認
