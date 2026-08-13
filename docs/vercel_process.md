@@ -38,11 +38,33 @@
 - ビルド設定は自動検出のため、そのままDeploy
   - vercel.jsonをプロジェクトルートに配置すると、カスタム可能
   - next.config.js(Next.js)なども自動検出
+  - Vercelダッシュボードから対象のGitHubリポジトリをインポートすると、以後`main`ブランチへのpushで自動デプロイされる
+
+##### 2.2.2.1 Vercelのインストール
+- プロジェクトフォルダにて、以下のbashコマンドを実行する
+  - > npm install -g vercel
+- vercelの導入確認
+  - > vercel --version
+- vercelにログインする
+  - > vercel login
+- プロジェクトフォルダのルートで以下のコマンドを実行し、Vercel上のプロジェクトとの紐づけを行う
+  - > vercel link
+- Vercel上で環境変数の登録(クライアントへの露出を防ぐ目的)
+  - > vercel env add [ENV_KEY_NAME]       # 環境変数のKey
+- ローカル開発用に、登録した環境変数を .env.local に取得する
+  - > vercel env pull .env.local
+  - `.env.local`は`.gitignore`に含め、GitHubへコミットしない
+- プロジェクトの依存関係をインストールし、ローカルで動作確認する
+  - > npm install
+  - > vercel dev       # サーバレス関数(API Routes等)も含めてVercelの本番環境に近い形でローカル起動
+  - フレームワーク標準の開発サーバ(例: `npm run dev`)でも良いが、その場合サーバレス関数部分はVercel上の挙動と差異が出ることがある
 
 #### 2.2.3 デプロイの確認
 - Vercelがビルドログを表示し、完了後にURLが提示される
 - ブラウザでhttps://[project-name].vercel.appを開く
 - 変更をgit pushすると、Vercelが自動で再デプロイ
+- 手動デプロイは、以下コマンドの実行を行う
+  - > vercel deploy    # プレビューデプロイで動作確認(本番反映は vercel --prod)
 
 #### 2.2.4 カスタムドメイン設定(任意、調査のみ)
 - サイドメニュー > Domains へ移動
