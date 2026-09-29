@@ -65,6 +65,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ````
 ollama pull gpt-oss:20b
+e.g. ollama run gemma4:e4b
 ````
 
 #### 3.2.3 不要なモデルの削除
