@@ -1,4 +1,4 @@
-$src = Join-Path (git rev-parse --show-toplevel) "docs"
+﻿$src = Join-Path (Split-Path -Parent $PSScriptRoot) "docs"
 $dst = "H:\マイドライブ\_knowledge"
 
 robocopy $src $dst *.md /MIR /R:1 /W:1 /NFL /NDL /NJH /NJS | Out-Null
